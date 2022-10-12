@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task.views import AddtaskView, IndexView, LoginView, RegView
+from task.views import TasklistView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +24,6 @@ urlpatterns = [
     path("login/",LoginView.as_view()),
     path("reg/",RegView.as_view()),
     path("addtask/",AddtaskView.as_view()),
+     path("listtask/",TasklistView.as_view()),
 
 ]

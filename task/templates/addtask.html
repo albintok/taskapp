@@ -20,14 +20,15 @@
 
 <body>
     <div class="container border border-2  mt-5 bg-light" style="height:80% ;width: 50%;">
-        <form action="">
+        <form action="" method="post">
+            {%csrf_token%}
             <span class="text-dark fs-5 fw-bold text-decoration-underline"  style="margin-left: 300px;">Add Task</span>
             <div class="row g-3 align-items-center ms-3 mt-3">
                 <div class="col-auto">
                     <label  class="col-form-label">User : </label>
                 </div>
                 <div class="col-auto">
-                    <input type="text"  class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" name="Username" class="form-control" aria-describedby="passwordHelpInline" placeholder="Username">
                 </div>
             </div>
             <div class="row g-3 align-items-center ms-3 mt-3">
@@ -35,7 +36,7 @@
                     <label  class="col-form-label">Task : </label>
                 </div>
                 <div class="col-auto">
-                    <input type="text"  class="form-control" aria-describedby="passwordHelpInline" style="width: 500px;">
+                    <input type="text" name="Task" class="form-control" aria-describedby="passwordHelpInline" style="width: 500px;" placeholder="Add your Task" >
                 </div>
             </div>
             <button type="submit" class="btn btn-secondary mb-3 mt-3" style="margin-left: 300px;">Add To Task</button><br>

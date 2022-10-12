@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from task.models import Task
 from django.views.generic import View
 
 # Create your views here.
@@ -17,6 +18,19 @@ class RegView(View):
 class AddtaskView(View):
     def get(self,request,*args,**kwargs):
         return render(request,"addtask.html")
+    def post(self,request,*args,**kwargs):
+        # print(request.POST)
+        uname=request.POST.get("Username")
+        task=request.POST.get("Task")
+        Task.objects.create(user=uname,task_name=task)
+        return render(request,"addtask.html")
+
+class TasklistView(View):
+    def get(self,request,*args,**kwargs):
+        qs=Task.objects.all()
+        return render(request,"list-task.html",{"tasks":qs})
+    
+    
 
 
 
