@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from task.models import Task
 from django.views.generic import View
 
@@ -29,8 +29,19 @@ class TasklistView(View):
     def get(self,request,*args,**kwargs):
         qs=Task.objects.all()
         return render(request,"list-task.html",{"tasks":qs})
-    
-    
+
+class TaskDetailView(View):
+    def get(self,request,*args,**kwargs):
+        id=kwargs.get("id")
+        task=Task.objects.get(id=id)
+        return render(request,"detail.task.html",{"todo":task})
+
+class TaskDeleteView(View):
+    def get(self,request,*args,**kwargs):
+        id=kwargs.get("id")
+        task=Task.objects.get(id=id)
+        task.delete()
+        return redirect("todo-list")
 
 
 
