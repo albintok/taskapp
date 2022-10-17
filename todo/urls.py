@@ -15,18 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from task.views import AddtaskView, IndexView, LoginView, RegView,TasklistView,TaskDetailView,TaskDeleteView
-
-
+# from task.views import AddtaskView, IndexView, LoginView, RegView,TasklistView,TaskDetailView,TaskDeleteView,RegistrationView
+from task import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("home/",IndexView.as_view()),
-    path("login/",LoginView.as_view()),
-    path("reg/",RegView.as_view()),
-    path("addtask/",AddtaskView.as_view(),name="todo-add"),
-    path("listtask/",TasklistView.as_view(),name="todo-list"),
-    path("taskdetail/<int:id>",TaskDetailView.as_view(),name="todo-detail"),
-    path("taskdelete/<int:id>",TaskDeleteView.as_view(),name="todo-delete"),
+    path("home/",views.IndexView.as_view()),
+    path("login/",views.LoginView.as_view()),
+    path("reg/",views.RegView.as_view()),
+    path("addtask/",views.AddtaskView.as_view(),name="todo-add"),
+    path("listtask/",views.TasklistView.as_view(),name="todo-list"),
+    path("taskdetail/<int:id>",views.TaskDetailView.as_view(),name="todo-detail"),
+    path("taskdelete/<int:id>",views.TaskDeleteView.as_view(),name="todo-delete"),
+    path("accounts/Register",views.RegistrationView.as_view(),name="todo-register"),
+    path("accounts/signin",views.LogView.as_view(),name="sign-in")
+
 
 
 

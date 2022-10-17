@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from task.models import Task
 from django.views.generic import View
+from task.forms import RegistrationForm,LoginForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 class IndexView(View):
@@ -42,6 +44,26 @@ class TaskDeleteView(View):
         task=Task.objects.get(id=id)
         task.delete()
         return redirect("todo-list")
+
+
+
+class RegistrationView(View):
+    def get(self,request,*args,**kwargs):
+        form=RegistrationForm()
+        return render(request,"registration.html",{"form":form})
+    def post(self,request,*args,**kwargs):
+        form=RegistrationForm(request.POST)
+        if form.is_valid():
+            User.objects.create_user(**form.cleaned_data)
+            return redirect("todo-list")
+        else:
+            return render(request,"registration.html",{"form":form})
+
+class LogView(View):
+    def get(self,request,*args,**kwargs):
+        form=LoginForm()
+        return render(request,"log.html",{"form":form})
+
 
 
 
